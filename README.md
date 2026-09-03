@@ -71,6 +71,14 @@ The `/admin` route is a visual dashboard prototype. It is not protected yet and 
 
 ## Deployment
 
-This project can be deployed to any static host that supports Vite output, including GitHub Pages, Netlify, Vercel, or Cloudflare Pages.
+This project includes a GitHub Actions workflow at `.github/workflows/deploy-pages.yml`.
 
-For GitHub Pages, build with `npm run build` and publish the generated `dist/` directory using your preferred GitHub Pages workflow.
+In the GitHub repository, go to **Settings > Pages** and set **Build and deployment** to **GitHub Actions**. After that, every push to `main` will build and deploy the site automatically.
+
+The expected GitHub Pages URL is:
+
+```text
+https://mckinnonjason.github.io/AIFwebsite/
+```
+
+The workflow also copies `dist/index.html` to `dist/404.html` so refreshed client-side routes such as `/events` and `/admin` continue to work on GitHub Pages.

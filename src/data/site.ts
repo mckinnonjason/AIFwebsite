@@ -10,7 +10,7 @@ export const siteSettings: SiteSettings = {
   linkedinUrl: import.meta.env.VITE_LINKEDIN_URL || "https://www.linkedin.com/",
   instagramUrl: import.meta.env.VITE_INSTAGRAM_URL || "https://www.instagram.com/",
   contactEmail: import.meta.env.VITE_CONTACT_EMAIL || "aiinfinance@example.com",
-  logoUrl: "/brand/ai-finance-logo-horizontal-cropped.png",
+  logoUrl: `${import.meta.env.BASE_URL}brand/ai-finance-logo-horizontal-cropped.png`,
 };
 
 export const mockEvents: Event[] = [

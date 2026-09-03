@@ -10,6 +10,9 @@ const navItems = [
   { label: "About", path: "/about" },
 ];
 
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
+const assetPath = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\//, "")}`;
+
 const formatDate = (date: string, options?: Intl.DateTimeFormatOptions) =>
   new Intl.DateTimeFormat("en-US", {
     month: "long",
@@ -25,15 +28,21 @@ const formatTime = (time: string) =>
   }).format(new Date(`2026-01-01T${time}:00`));
 
 function navigate(path: string) {
-  window.history.pushState({}, "", path);
+  const nextPath = path === "/" ? `${basePath || "/"}` : `${basePath}${path}`;
+  window.history.pushState({}, "", nextPath);
   window.dispatchEvent(new PopStateEvent("popstate"));
 }
 
 function usePath() {
-  const [path, setPath] = useState(window.location.pathname);
+  const normalizePath = () => {
+    const pathname = window.location.pathname;
+    const withoutBase = basePath && pathname.startsWith(basePath) ? pathname.slice(basePath.length) : pathname;
+    return withoutBase || "/";
+  };
+  const [path, setPath] = useState(normalizePath);
 
   useEffect(() => {
-    const onPop = () => setPath(window.location.pathname);
+    const onPop = () => setPath(normalizePath());
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
   }, []);
@@ -70,7 +79,7 @@ function LinkButton({
 function Logo() {
   return (
     <button className="logo" type="button" onClick={() => navigate("/")} aria-label="BYU AI in Finance home">
-      <img src="/brand/ai-finance-logo-mark-cropped.png" alt="" aria-hidden="true" />
+      <img src={assetPath("brand/ai-finance-logo-mark-cropped.png")} alt="" aria-hidden="true" />
       <span>
         <strong>BYU AI</strong>
         <small>in Finance</small>
@@ -281,7 +290,7 @@ function HomePage() {
         <div className="container heroGrid">
           <div className="heroCopy">
             <p className="eyebrow">BYU AI in Finance</p>
-            <img className="heroBrandMark" src="/brand/ai-finance-logo-mark-cropped.png" alt="" aria-hidden="true" />
+            <img className="heroBrandMark" src={assetPath("brand/ai-finance-logo-mark-cropped.png")} alt="" aria-hidden="true" />
             <h1>Where AI Meets Finance.</h1>
             <p>
               BYU AI in Finance brings students together to explore how artificial intelligence is
@@ -296,7 +305,7 @@ function HomePage() {
             </div>
           </div>
           <div className="heroMedia">
-            <img src="/hero-ai-finance.png" alt="Abstract financial charts and data layers" />
+            <img src={assetPath("hero-ai-finance.png")} alt="Abstract financial charts and data layers" />
           </div>
         </div>
       </section>
