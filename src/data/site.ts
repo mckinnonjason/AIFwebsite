@@ -1,0 +1,251 @@
+import type { Event, Job, Leader, Resource, SiteSettings } from "../types";
+
+const today = "2026-09-03T00:00:00.000Z";
+
+export const siteSettings: SiteSettings = {
+  clubName: "BYU AI in Finance",
+  description:
+    "A student organization exploring how artificial intelligence is changing investing, banking, corporate finance, private equity, consulting, and the broader financial industry.",
+  emailSignupUrl: import.meta.env.VITE_JOIN_URL || "https://forms.gle/example-join",
+  linkedinUrl: import.meta.env.VITE_LINKEDIN_URL || "https://www.linkedin.com/",
+  instagramUrl: import.meta.env.VITE_INSTAGRAM_URL || "https://www.instagram.com/",
+  contactEmail: import.meta.env.VITE_CONTACT_EMAIL || "aiinfinance@example.com",
+  logoUrl: "/brand/ai-finance-logo-horizontal-cropped.png",
+};
+
+export const mockEvents: Event[] = [
+  {
+    id: "ai-investment-banking",
+    title: "AI in Investment Banking",
+    description:
+      "How analysts are using AI to accelerate research, modeling, and workflow automation.",
+    date: "2026-09-15",
+    startTime: "18:00",
+    endTime: "19:00",
+    location: "TNRB 251",
+    category: "Workshop",
+    speaker: "Alumni panel",
+    rsvpUrl: "https://forms.gle/example-rsvp",
+    calendarUrl: "https://calendar.google.com/",
+    attendanceUrl: "https://forms.gle/example-checkin",
+    isFeatured: true,
+    createdAt: today,
+    updatedAt: today,
+  },
+  {
+    id: "financial-model-ai-workshop",
+    title: "Building an AI-Powered Financial Model",
+    description:
+      "A hands-on session for using AI to structure research, assumptions, and model checks.",
+    date: "2026-09-29",
+    startTime: "17:30",
+    endTime: "18:45",
+    location: "TNRB 280",
+    category: "Workshop",
+    rsvpUrl: "https://forms.gle/example-rsvp",
+    isFeatured: true,
+    createdAt: today,
+    updatedAt: today,
+  },
+  {
+    id: "ai-private-equity",
+    title: "AI in Private Equity",
+    description:
+      "How investors are applying AI to sourcing, diligence, market maps, and portfolio work.",
+    date: "2026-10-08",
+    startTime: "18:00",
+    endTime: "19:00",
+    location: "TNRB 710",
+    category: "Speaker",
+    speaker: "Guest investor",
+    speakerTitle: "Private equity operating partner",
+    rsvpUrl: "https://forms.gle/example-rsvp",
+    isFeatured: true,
+    createdAt: today,
+    updatedAt: today,
+  },
+  {
+    id: "finance-ai-recruiting-night",
+    title: "Finance + AI Recruiting Night",
+    description:
+      "A practical conversation on internships, networking, and roles where AI fluency matters.",
+    date: "2026-10-22",
+    startTime: "18:00",
+    endTime: "19:15",
+    location: "WSC Garden Court",
+    category: "Recruiting",
+    calendarUrl: "https://calendar.google.com/",
+    isFeatured: false,
+    createdAt: today,
+    updatedAt: today,
+  },
+  {
+    id: "intro-meeting",
+    title: "Intro Meeting: AI in Finance",
+    description:
+      "Club kickoff with a short overview of the semester, committees, and ways to get involved.",
+    date: "2026-08-28",
+    startTime: "18:00",
+    endTime: "18:50",
+    location: "TNRB 151",
+    category: "Social",
+    notesUrl: "https://docs.google.com/",
+    slidesUrl: "https://docs.google.com/",
+    recordingUrl: "https://drive.google.com/",
+    isFeatured: false,
+    createdAt: today,
+    updatedAt: today,
+  },
+];
+
+export const mockResources: Resource[] = [
+  {
+    id: "ai-tools-finance-students",
+    title: "AI Tools for Finance Students",
+    description:
+      "Practical tools for research, analysis, modeling checks, and professional productivity.",
+    category: "AI",
+    type: "Guide",
+    url: "https://docs.google.com/",
+    tags: ["AI tools", "Research", "Modeling"],
+    createdAt: today,
+    updatedAt: today,
+  },
+  {
+    id: "finance-recruiting-guide",
+    title: "Finance Recruiting Guide",
+    description:
+      "A concise path through internships, networking, interview prep, and recruiting timelines.",
+    category: "Recruiting",
+    type: "Guide",
+    url: "https://docs.google.com/",
+    tags: ["Recruiting", "Interviews", "Networking"],
+    createdAt: today,
+    updatedAt: today,
+  },
+  {
+    id: "valuation-refresh",
+    title: "Valuation Refresh",
+    description:
+      "A quick reference for DCF, comparables, precedent transactions, and common interview prompts.",
+    category: "Finance",
+    type: "Template",
+    url: "https://docs.google.com/",
+    tags: ["Valuation", "Technical prep"],
+    createdAt: today,
+    updatedAt: today,
+  },
+  {
+    id: "past-meeting-notes",
+    title: "Past Meeting Notes",
+    description:
+      "Slides, recordings, and takeaways from club workshops and guest speaker sessions.",
+    category: "Club Materials",
+    type: "Slides",
+    url: "https://drive.google.com/",
+    tags: ["Meetings", "Slides"],
+    createdAt: today,
+    updatedAt: today,
+  },
+];
+
+export const mockJobs: Job[] = [
+  {
+    id: "example-bank-summer-analyst",
+    company: "Example Bank",
+    title: "Investment Banking Summer Analyst",
+    description:
+      "Sample posting for students tracking banking roles where AI-assisted research is becoming valuable.",
+    location: "New York, NY",
+    type: "Internship",
+    category: "Finance",
+    deadline: "2026-10-01",
+    url: "https://www.linkedin.com/jobs/",
+    active: true,
+    createdAt: today,
+    updatedAt: today,
+  },
+  {
+    id: "example-capital-pe-analyst",
+    company: "Example Capital",
+    title: "Private Equity Summer Analyst",
+    description:
+      "Placeholder opportunity for deal sourcing, market research, and diligence exposure.",
+    location: "Salt Lake City, UT",
+    type: "Internship",
+    category: "Finance",
+    deadline: "2026-10-15",
+    url: "https://www.linkedin.com/jobs/",
+    active: true,
+    createdAt: today,
+    updatedAt: today,
+  },
+  {
+    id: "example-fintech-ai-intern",
+    company: "Example FinTech",
+    title: "AI Finance Intern",
+    description:
+      "Sample role supporting finance automation, data cleanup, and AI-enabled reporting.",
+    location: "Remote",
+    type: "Part-time",
+    category: "FinTech",
+    deadline: "2026-11-05",
+    url: "https://www.linkedin.com/jobs/",
+    active: true,
+    createdAt: today,
+    updatedAt: today,
+  },
+];
+
+export const mockLeaders: Leader[] = [
+  {
+    id: "president",
+    name: "Student Leader",
+    position: "President",
+    bio: "Coordinates club strategy, partnerships, and the student leadership team.",
+    email: "leader@example.com",
+    linkedinUrl: "https://www.linkedin.com/",
+    displayOrder: 1,
+    active: true,
+  },
+  {
+    id: "vice-president",
+    name: "Student Leader",
+    position: "Vice President",
+    bio: "Supports operations, member experience, and cross-functional club priorities.",
+    displayOrder: 2,
+    active: true,
+  },
+  {
+    id: "events",
+    name: "Student Leader",
+    position: "VP of Events",
+    bio: "Plans workshops, speaker sessions, and industry conversations.",
+    displayOrder: 3,
+    active: true,
+  },
+  {
+    id: "recruiting",
+    name: "Student Leader",
+    position: "VP of Recruiting",
+    bio: "Curates opportunities, prep resources, and professional connections.",
+    displayOrder: 4,
+    active: true,
+  },
+  {
+    id: "education",
+    name: "Student Leader",
+    position: "VP of Education",
+    bio: "Builds practical learning resources for finance and AI workflows.",
+    displayOrder: 5,
+    active: true,
+  },
+  {
+    id: "marketing",
+    name: "Student Leader",
+    position: "VP of Marketing",
+    bio: "Manages announcements, social channels, and student outreach.",
+    displayOrder: 6,
+    active: true,
+  },
+];
