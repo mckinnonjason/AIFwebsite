@@ -6,7 +6,7 @@ const navItems = [
   { label: "Home", path: "/" },
   { label: "Events", path: "/events" },
   { label: "Resources", path: "/resources" },
-  { label: "Recruiting", path: "/recruiting" },
+  { label: "Internships", path: "/internships" },
   { label: "About", path: "/about" },
 ];
 
@@ -201,15 +201,30 @@ function EventCard({ event, compact = false }: { event: Event; compact?: boolean
 function ResourceCard({ resource }: { resource: Resource }) {
   return (
     <article className="simpleCard">
-      <span className="badge">{resource.category}</span>
       <h3>{resource.title}</h3>
       <p>{resource.description}</p>
-      <div className="tagRow">
-        {resource.tags.map((tag) => (
-          <span key={tag}>{tag}</span>
-        ))}
-      </div>
-      {resource.url ? <a href={resource.url}>Open Resource</a> : null}
+    </article>
+  );
+}
+
+function ResourceCategoryCard({
+  title,
+  text,
+  action,
+}: {
+  title: string;
+  text: string;
+  action?: { label: string; path: string };
+}) {
+  return (
+    <article className="resourceCategoryCard">
+      <h3>{title}</h3>
+      <p>{text}</p>
+      {action ? (
+        <button type="button" onClick={() => navigate(action.path)}>
+          {action.label}
+        </button>
+      ) : null}
     </article>
   );
 }
@@ -265,7 +280,7 @@ function CTASection() {
       <div className="container ctaInner">
         <div>
           <p className="eyebrow">Stay in the loop</p>
-          <h2>Get updates about meetings, workshops, and recruiting opportunities.</h2>
+          <h2>Get updates about meetings, workshops, and internship opportunities.</h2>
         </div>
         <div className="ctaActions">
           <LinkButton href={settings.emailSignupUrl}>Join the Club</LinkButton>
@@ -282,12 +297,13 @@ function HomePage() {
   const settings = siteService.getSettings();
   const featuredEvents = eventService.getFeaturedEvents().slice(0, 3);
   const resources = resourceService.getResources().slice(0, 4);
-  const jobs = jobService.getActiveJobs().slice(0, 3);
+  const nextEvent = featuredEvents[0];
+  const jobs = jobService.getActiveJobs().slice(0, 2);
 
   return (
     <>
       <section className="hero">
-        <div className="container heroGrid">
+        <div className="container heroGrid textHeroGrid">
           <div className="heroCopy">
             <p className="eyebrow">BYU AI in Finance</p>
             <img className="heroBrandMark" src={assetPath("brand/ai-finance-logo-mark-cropped.png")} alt="" aria-hidden="true" />
@@ -304,8 +320,31 @@ function HomePage() {
               </LinkButton>
             </div>
           </div>
-          <div className="heroMedia">
-            <img src={assetPath("hero-ai-finance.png")} alt="Abstract financial charts and data layers" />
+          <div className="heroInfoPanel" aria-label="Club snapshot">
+            <p className="eyebrow">Next Up</p>
+            {nextEvent ? (
+              <>
+                <h2>{nextEvent.title}</h2>
+                <p>{nextEvent.description}</p>
+                <dl>
+                  <div>
+                    <dt>Date</dt>
+                    <dd>{formatDate(nextEvent.date)}</dd>
+                  </div>
+                  <div>
+                    <dt>Time</dt>
+                    <dd>{formatTime(nextEvent.startTime)}</dd>
+                  </div>
+                  <div>
+                    <dt>Location</dt>
+                    <dd>{nextEvent.location}</dd>
+                  </div>
+                </dl>
+                <button type="button" onClick={() => navigate("/events")}>
+                  See Events
+                </button>
+              </>
+            ) : null}
           </div>
         </div>
       </section>
@@ -314,7 +353,7 @@ function HomePage() {
         <div className="container">
           <SectionHeader
             title="Upcoming Events"
-            text="Workshops, speakers, recruiting events, and conversations about AI and finance."
+            text="Workshops, speakers, internship events, and conversations about AI and finance."
           />
           <div className="eventList">
             {featuredEvents.map((event) => (
@@ -364,14 +403,14 @@ function HomePage() {
       <section className="section splitSection">
         <div className="container splitGrid">
           <div>
-            <p className="eyebrow">Recruiting</p>
+            <p className="eyebrow">Internships</p>
             <h2>Find Your Next Opportunity</h2>
             <p>
-              The club curates internships, jobs, recruiting events, and contacts related to finance,
-              technology, consulting, fintech, and AI-enabled investing.
+              The club highlights internship opportunities and application timelines related to
+              finance, technology, fintech, and AI-enabled investing.
             </p>
-            <LinkButton href="/recruiting" variant="secondary">
-              Explore Recruiting
+            <LinkButton href="/internships" variant="secondary">
+              Explore Internships
             </LinkButton>
           </div>
           <div className="jobStack">
@@ -406,7 +445,7 @@ function EventsPage() {
         <SectionHeader
           eyebrow="Calendar"
           title="Events"
-          text="Find workshops, speakers, recruiting nights, and past meeting materials."
+          text="Find workshops, speakers, internship nights, and past meeting materials."
         />
         <div className="eventList">
           {upcoming.map((event) => (
@@ -426,7 +465,21 @@ function EventsPage() {
 
 function ResourcesPage() {
   const resources = resourceService.getResources();
-  const groups = ["AI", "Finance", "Recruiting", "Club Materials"] as const;
+  const categories = [
+    {
+      title: "Club Materials",
+      text: "Meeting notes, workshop takeaways, slides, recordings, and AI tools shared by the club.",
+    },
+    {
+      title: "Recruiting",
+      text: "Resume prep, networking guidance, interview practice, and recruiting timelines in one place.",
+      action: { label: "View Internships", path: "/internships" },
+    },
+    {
+      title: "BYU Finance",
+      text: "Finance primers, valuation refreshers, market context, and student-facing BYU finance resources.",
+    },
+  ];
 
   return (
     <main className="page">
@@ -434,20 +487,21 @@ function ResourcesPage() {
         <SectionHeader
           eyebrow="Library"
           title="Resources"
-          text="Guides, tools, templates, notes, and recordings for students learning finance and AI workflows."
+          text="A simple home for the materials students are most likely to come back to."
         />
-        {groups.map((group) => (
-          <section className="resourceGroup" key={group}>
-            <h2>{group}</h2>
-            <div className="cardGrid">
-              {resources
-                .filter((resource) => resource.category === group)
-                .map((resource) => (
-                  <ResourceCard key={resource.id} resource={resource} />
-                ))}
-            </div>
-          </section>
-        ))}
+        <div className="resourceCategoryGrid">
+          {categories.map((category) => (
+            <ResourceCategoryCard key={category.title} {...category} />
+          ))}
+        </div>
+        <section className="resourceGroup">
+          <h2>Suggested Resources</h2>
+          <div className="cardGrid">
+            {resources.map((resource) => (
+              <ResourceCard key={resource.id} resource={resource} />
+            ))}
+          </div>
+        </section>
       </div>
     </main>
   );
@@ -464,8 +518,8 @@ function RecruitingPage() {
       <div className="container">
         <SectionHeader
           eyebrow="Opportunities"
-          title="Recruiting"
-          text="A practical student hub for internships, early career roles, recruiting prep, and professional connections."
+          title="Internships"
+          text="A practical student hub for internship opportunities and early application timelines."
         />
         <div className="filterRow" role="tablist" aria-label="Opportunity filters">
           {categories.map((item) => (
@@ -484,24 +538,15 @@ function RecruitingPage() {
             <JobCard key={job.id} job={job} />
           ))}
         </div>
-        <section className="resourceGroup">
-          <h2>Recruiting Resources</h2>
-          <div className="threeGrid tight">
-            {["Finance recruiting", "AI and technical recruiting", "Networking", "Resume preparation", "Interview preparation", "Recruiting timelines"].map(
-              (item) => (
-                <article className="miniPanel" key={item}>
-                  {item}
-                </article>
-              ),
-            )}
-          </div>
-        </section>
-        <section className="notePanel">
-          <h2>Recruiting Contacts</h2>
+        <section className="notePanel internshipNote">
+          <h2>Recruiting Prep</h2>
           <p>
-            Contact lists can be added by administrators later. Personal contact information should
-            only be published when intentionally approved for members.
+            Resume guidance, networking notes, interview prep, and recruiting timelines live in the
+            Resources tab under Recruiting.
           </p>
+          <button type="button" onClick={() => navigate("/resources")}>
+            Go to Resources
+          </button>
         </section>
       </div>
     </main>
@@ -556,7 +601,7 @@ function AdminPage() {
       ["Upcoming Events", eventService.getUpcomingEvents().length],
       ["Past Events", eventService.getPastEvents().length],
       ["Resources", resources.length],
-      ["Active Jobs", jobs.length],
+      ["Active Internships", jobs.length],
     ],
     [jobs.length, resources.length],
   );
@@ -569,7 +614,7 @@ function AdminPage() {
           <button type="button">Dashboard</button>
           <button type="button">Events</button>
           <button type="button">Resources</button>
-          <button type="button">Recruiting</button>
+          <button type="button">Internships</button>
           <button type="button">Leadership</button>
           <button type="button">Site Settings</button>
           <button type="button" onClick={() => navigate("/")}>
@@ -693,7 +738,7 @@ function Routes() {
   if (path === "/") return <HomePage />;
   if (path === "/events") return <EventsPage />;
   if (path === "/resources") return <ResourcesPage />;
-  if (path === "/recruiting") return <RecruitingPage />;
+  if (path === "/internships" || path === "/recruiting") return <RecruitingPage />;
   if (path === "/about") return <AboutPage />;
   if (path === "/admin") return <AdminPage />;
   return <NotFoundPage />;

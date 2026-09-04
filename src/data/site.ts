@@ -6,9 +6,10 @@ export const siteSettings: SiteSettings = {
   clubName: "BYU AI in Finance",
   description:
     "A student organization exploring how artificial intelligence is changing investing, banking, corporate finance, private equity, consulting, and the broader financial industry.",
-  emailSignupUrl: import.meta.env.VITE_JOIN_URL || "https://forms.gle/example-join",
+  emailSignupUrl:
+    import.meta.env.VITE_JOIN_URL || "https://clubs.byu.edu/link/club/18295873491185562",
   linkedinUrl: import.meta.env.VITE_LINKEDIN_URL || "https://www.linkedin.com/",
-  instagramUrl: import.meta.env.VITE_INSTAGRAM_URL || "https://www.instagram.com/",
+  instagramUrl: import.meta.env.VITE_INSTAGRAM_URL || "https://www.instagram.com/aif.byu/",
   contactEmail: import.meta.env.VITE_CONTACT_EMAIL || "aiinfinance@example.com",
   logoUrl: `${import.meta.env.BASE_URL}brand/ai-finance-logo-horizontal-cropped.png`,
 };
@@ -104,7 +105,7 @@ export const mockResources: Resource[] = [
     title: "AI Tools for Finance Students",
     description:
       "Practical tools for research, analysis, modeling checks, and professional productivity.",
-    category: "AI",
+    category: "Club Materials",
     type: "Guide",
     url: "https://docs.google.com/",
     tags: ["AI tools", "Research", "Modeling"],
@@ -128,7 +129,7 @@ export const mockResources: Resource[] = [
     title: "Valuation Refresh",
     description:
       "A quick reference for DCF, comparables, precedent transactions, and common interview prompts.",
-    category: "Finance",
+    category: "BYU Finance",
     type: "Template",
     url: "https://docs.google.com/",
     tags: ["Valuation", "Technical prep"],

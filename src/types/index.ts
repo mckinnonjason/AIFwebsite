@@ -32,7 +32,7 @@ export interface Resource {
   id: string;
   title: string;
   description: string;
-  category: "AI" | "Finance" | "Recruiting" | "Club Materials";
+  category: "Club Materials" | "Recruiting" | "BYU Finance";
   type: "Guide" | "Tool" | "Slides" | "Recording" | "Article" | "Template";
   url?: string;
   fileUrl?: string;
