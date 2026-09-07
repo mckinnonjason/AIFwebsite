@@ -226,6 +226,7 @@ export const mockLeaders: Leader[] = [
     name: "Easton Lovell",
     position: "VP of Internal Communications",
     bio: "Supports club programming, member experience, and organization priorities.",
+    photoUrl: `${import.meta.env.BASE_URL}leaders/easton-lovell.png`,
     email: "elovell0@student.byu.edu",
     linkedinUrl: "https://www.linkedin.com/in/easton-lovell-7a1bb2391/",
     displayOrder: 3,
