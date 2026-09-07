@@ -214,6 +214,8 @@ export const mockLeaders: Leader[] = [
     name: "Jason",
     position: "VP of Technology",
     bio: "Supports the club website, technical systems, and AI-enabled workflows.",
+    email: "jasmck@student.byu.edu",
+    linkedinUrl: "https://www.linkedin.com/in/mckinnonjason/",
     displayOrder: 2,
     active: true,
   },
