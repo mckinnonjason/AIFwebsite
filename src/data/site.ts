@@ -216,7 +216,7 @@ export const mockLeaders: Leader[] = [
     bio: "Supports the club website, technical systems, and AI-enabled workflows.",
     email: "jasmck@student.byu.edu",
     linkedinUrl: "https://www.linkedin.com/in/mckinnonjason/",
-    displayOrder: 2,
+    displayOrder: 5,
     active: true,
   },
   {
@@ -226,7 +226,7 @@ export const mockLeaders: Leader[] = [
     bio: "Supports club programming, member experience, and organization priorities.",
     email: "elovell0@student.byu.edu",
     linkedinUrl: "https://www.linkedin.com/in/easton-lovell-7a1bb2391/",
-    displayOrder: 3,
+    displayOrder: 2,
     active: true,
   },
   {
@@ -236,7 +236,7 @@ export const mockLeaders: Leader[] = [
     bio: "Supports club programming, member experience, and organization priorities.",
     email: "ems0613@student.byu.edu",
     linkedinUrl: "https://www.linkedin.com/in/emily-stewart-100665337/",
-    displayOrder: 4,
+    displayOrder: 3,
     active: true,
   },
   {
@@ -246,7 +246,7 @@ export const mockLeaders: Leader[] = [
     bio: "Supports club programming, member experience, and organization priorities.",
     email: "gdel2005@student.byu.edu",
     linkedinUrl: "https://www.linkedin.com/in/jackson-delgrosso/",
-    displayOrder: 5,
+    displayOrder: 4,
     active: true,
   },
   {
