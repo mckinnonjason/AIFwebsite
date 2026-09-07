@@ -38,6 +38,18 @@ Mock content also lives in `src/data/site.ts`:
 
 These records are intentionally realistic seed records, not production data.
 
+## Leader Headshots
+
+Save finished leader photos in `public/leaders/`, then reference them from the matching `mockLeaders` record in `src/data/site.ts`.
+
+Use the repeatable crop helper to make square, avatar-ready images:
+
+```bash
+npm run headshot -- -Source "C:\path\to\photo.png" -Output "public\leaders\leader-name.png" -Zoom 1.3 -OffsetY -0.05 -Preview
+```
+
+Adjust `-Zoom` up for a tighter face crop and down for more shoulders. Use small `-OffsetX` or `-OffsetY` values, such as `0.05` or `-0.05`, to re-center the subject.
+
 ## Environment Variables
 
 Copy `.env.example` to `.env.local` if you want local overrides:

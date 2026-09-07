@@ -204,6 +204,7 @@ export const mockLeaders: Leader[] = [
     name: "Owen Burton",
     position: "President",
     bio: "Coordinates club strategy, partnerships, and the student leadership team.",
+    photoUrl: `${import.meta.env.BASE_URL}leaders/owen-burton.png`,
     email: "oburton4@student.byu.edu",
     linkedinUrl: "https://www.linkedin.com/in/owenburton04/",
     displayOrder: 1,
