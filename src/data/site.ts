@@ -246,6 +246,7 @@ export const mockLeaders: Leader[] = [
     name: "Jackson (Goose) Delgrosso",
     position: "Vice President",
     bio: "Supports club programming, member experience, and organization priorities.",
+    photoUrl: `${import.meta.env.BASE_URL}leaders/jackson-delgrosso.png`,
     email: "gdel2005@student.byu.edu",
     linkedinUrl: "https://www.linkedin.com/in/jackson-delgrosso/",
     displayOrder: 2,
