@@ -45,7 +45,8 @@ try {
     $graphics.SmoothingMode = [System.Drawing.Drawing2D.SmoothingMode]::HighQuality
     $graphics.PixelOffsetMode = [System.Drawing.Drawing2D.PixelOffsetMode]::HighQuality
     $graphics.CompositingQuality = [System.Drawing.Drawing2D.CompositingQuality]::HighQuality
-    $graphics.DrawImage($image, 0, 0, $crop, [System.Drawing.GraphicsUnit]::Pixel)
+    $destination = New-Object System.Drawing.Rectangle(0, 0, $Size, $Size)
+    $graphics.DrawImage($image, $destination, $crop, [System.Drawing.GraphicsUnit]::Pixel)
     $bitmap.Save($outputPath, [System.Drawing.Imaging.ImageFormat]::Png)
   } finally {
     $graphics.Dispose()
