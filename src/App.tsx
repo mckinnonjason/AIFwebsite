@@ -267,7 +267,6 @@ function LeaderCard({ leader }: { leader: Leader }) {
       )}
       <h3>{leader.name}</h3>
       <p className="position">{leader.position}</p>
-      <p>{leader.bio}</p>
       <div className="cardActions">
         {leader.email ? <a href={`mailto:${leader.email}`}>Email</a> : null}
         {leader.linkedinUrl ? <a href={leader.linkedinUrl}>LinkedIn</a> : null}
