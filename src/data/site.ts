@@ -228,7 +228,7 @@ export const mockLeaders: Leader[] = [
     bio: "Supports club programming, member experience, and organization priorities.",
     email: "elovell0@student.byu.edu",
     linkedinUrl: "https://www.linkedin.com/in/easton-lovell-7a1bb2391/",
-    displayOrder: 2,
+    displayOrder: 3,
     active: true,
   },
   {
@@ -238,7 +238,7 @@ export const mockLeaders: Leader[] = [
     bio: "Supports club programming, member experience, and organization priorities.",
     email: "ems0613@student.byu.edu",
     linkedinUrl: "https://www.linkedin.com/in/emily-stewart-100665337/",
-    displayOrder: 3,
+    displayOrder: 4,
     active: true,
   },
   {
@@ -248,7 +248,7 @@ export const mockLeaders: Leader[] = [
     bio: "Supports club programming, member experience, and organization priorities.",
     email: "gdel2005@student.byu.edu",
     linkedinUrl: "https://www.linkedin.com/in/jackson-delgrosso/",
-    displayOrder: 4,
+    displayOrder: 2,
     active: true,
   },
   {
@@ -256,6 +256,7 @@ export const mockLeaders: Leader[] = [
     name: "Kyler Robinson",
     position: "VP of Operations",
     bio: "Supports club programming, member experience, and organization priorities.",
+    photoUrl: `${import.meta.env.BASE_URL}leaders/kyler-robinson.png`,
     email: "kylerrr@student.byu.edu",
     linkedinUrl: "https://www.linkedin.com/in/kyler-r-b51115205/",
     displayOrder: 6,
