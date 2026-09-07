@@ -769,7 +769,7 @@ button {
 .leaderPhoto {
   display: block;
   object-fit: cover;
-  object-position: center top;
+  object-position: center center;
   border: 1px solid var(--color-line);
 }
 
