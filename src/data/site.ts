@@ -236,6 +236,7 @@ export const mockLeaders: Leader[] = [
     name: "Emily Stewart",
     position: "VP of External Communications",
     bio: "Supports club programming, member experience, and organization priorities.",
+    photoUrl: `${import.meta.env.BASE_URL}leaders/emily-stewart.png`,
     email: "ems0613@student.byu.edu",
     linkedinUrl: "https://www.linkedin.com/in/emily-stewart-100665337/",
     displayOrder: 4,
