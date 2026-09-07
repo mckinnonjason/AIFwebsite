@@ -258,9 +258,13 @@ function LeaderCard({ leader }: { leader: Leader }) {
 
   return (
     <article className="leaderCard">
-      <div className="avatar" aria-hidden="true">
-        {initials}
-      </div>
+      {leader.photoUrl ? (
+        <img className="leaderPhoto" src={leader.photoUrl} alt={`${leader.name} headshot`} />
+      ) : (
+        <div className="avatar" aria-hidden="true">
+          {initials}
+        </div>
+      )}
       <h3>{leader.name}</h3>
       <p className="position">{leader.position}</p>
       <p>{leader.bio}</p>

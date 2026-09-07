@@ -751,15 +751,26 @@ button {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.avatar,
+.leaderPhoto {
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+}
+
 .avatar {
-  width: 72px;
-  height: 72px;
   display: grid;
   place-items: center;
-  border-radius: 50%;
   background: linear-gradient(135deg, #edf4fb, #dbe9f8);
   color: var(--color-navy);
   font-weight: 900;
+}
+
+.leaderPhoto {
+  display: block;
+  object-fit: cover;
+  object-position: center top;
+  border: 1px solid var(--color-line);
 }
 
 .adminPage {
